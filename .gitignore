@@ -1,0 +1,6 @@
+venv
+__pycache__
+Token.py
+Media
+db.sqlite3
+db_exel.xlsx
