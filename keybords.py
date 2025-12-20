@@ -8,7 +8,8 @@ start_kb = ReplyKeyboardMarkup(keyboard=[
      KeyboardButton(text="Гарантия")],
     [KeyboardButton(text="Промокод"),
     KeyboardButton(text="Магазины")],
-    [KeyboardButton(text="Задать вопрос")]
+    [KeyboardButton(text="Cоцсети"),
+    KeyboardButton(text="Задать вопрос")]
 ], resize_keyboard=True)
 
 
@@ -142,6 +143,14 @@ magazin_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="OZON WALINUR", url="https://ozon.ru/t/1WczDmd")],
     [InlineKeyboardButton(text="OZON CARDALE", url="https://ozon.ru/t/MukcsDn")],
     #[InlineKeyboardButton(text="OZON Erium", url="https://ozon.ru/t/gaz2fgV")]
+])
+
+socsites_kb = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="Дзен", url="https://dzen.ru/id/692dcd0283f974561dd48d25")],
+    [InlineKeyboardButton(text="YouTube", url="https://youtube.com/@cardale-k4q?si=XE8ei_OVUt7ItYzC")],
+    [InlineKeyboardButton(text="ВК", url="https://vk.com/cardale1")],
+    [InlineKeyboardButton(text="Instagram", url="https://www.instagram.com/cardale.ru?igsh=aWVrMjlndGhvNHI4&utm_source=qr")],
+    [InlineKeyboardButton(text="Telegram канал", url="https://t.me/cardale_akb")]
 ])
 
 promo_kb = InlineKeyboardMarkup(inline_keyboard=[

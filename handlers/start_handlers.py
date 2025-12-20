@@ -108,6 +108,10 @@ async def dack_menu(message: Message):
     else:
         await message.answer(Text.promo_not_text, reply_markup=kb.promo_kb)
 
+@router.message(F.text.contains("Cоцсети"))
+async def garant(message: Message):
+    await message.answer(Text.socsites, reply_markup=kb.socsites_kb)
+
 @router.message(F.text.contains("Задать вопрос"))
 async def dack_menu(message: Message, state: FSMContext):
     await state.set_state(Answer.answer)
