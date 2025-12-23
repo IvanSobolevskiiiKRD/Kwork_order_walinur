@@ -3,6 +3,13 @@ from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 import database.requests as rq
 import math
 
+
+privacy_policy = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="📝 Принять", callback_data="privacy_policy_True")],
+    [InlineKeyboardButton(text="🔙 Отмена", callback_data="privacy_policy_False")]
+])
+
+
 start_kb = ReplyKeyboardMarkup(keyboard=[
     [KeyboardButton(text="Инструкции"),
      KeyboardButton(text="Гарантия")],
@@ -19,7 +26,7 @@ cansel_answer_kb = ReplyKeyboardMarkup(keyboard=[
 
 async def answer_admin_button(id, text_answer):
     otvet = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="Написать ответ", callback_select_categor_kbdata=f"otvet_{id}_{text_answer}")]
+    [InlineKeyboardButton(text="Написать ответ", callback_data=f"otvet_{id}_{text_answer}")]
 ])
     return otvet
 

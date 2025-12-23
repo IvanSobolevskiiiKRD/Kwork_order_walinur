@@ -22,9 +22,26 @@ class Answer(StatesGroup):
 @router.message(CommandStart())
 async def cmd_start(message: Message, command: CommandObject, state: FSMContext):
     await state.clear()
-    await rq.set_user(message.from_user.id, message.from_user.username)
-    await message.answer(Text.start_text, reply_markup=kb.start_kb)
+    user_exists = await rq.user_exists(message.from_user.id)
+    if user_exists:
+        user_data = await rq.get_user_data(message.from_user.id)
+        user_data = user_data.__dict__
+        if user_data["privacy_policy"]:
+            await message.answer(Text.start_text, reply_markup=kb.start_kb)
+        else:
+            await message.answer(Text.privacy_policy_Text, reply_markup=kb.privacy_policy)
+    else:
+        await rq.set_user(message.from_user.id, message.from_user.username)
+        await message.answer(Text.privacy_policy_Text, reply_markup=kb.privacy_policy)
 
+@router.callback_query(F.data == "privacy_policy_True")
+async def start(callback: CallbackQuery):
+    await rq.redact_data_user(callback.from_user.id, "privacy_policy", True)
+    await callback.answer(Text.start_text, reply_markup=kb.start_kb)
+
+@router.callback_query(F.data == "privacy_policy_False")
+async def start(callback: CallbackQuery):
+    await callback.answer(Text.privacy_policy_False_Text)
 
 @router.message(F.text.contains("⏮️ На главную ⏮️"))
 async def cmd_start(message: Message, state: FSMContext):

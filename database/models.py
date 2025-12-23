@@ -19,6 +19,7 @@ class User(Base):
     page: Mapped[int] = mapped_column()
     categor: Mapped[str] = mapped_column()
     time_start: Mapped[DateTime] = mapped_column(DateTime)
+    privacy_policy: Mapped[bool] = mapped_column()
 
 class Tovar(Base):
     __tablename__ = "tovars"

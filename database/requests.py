@@ -3,15 +3,30 @@ from database.models import User, Tovar, Promos
 from sqlalchemy import select, update, delete
 from datetime import datetime
 
+async def user_exists(telegram_id):
+    async with async_session() as session:
+        user = await session.scalar(select(User).where(User.tg_id == telegram_id))
+
+        if not user:
+            return False
+        else:
+            return True
+
 async def set_user(telegram_id, username):
     async with async_session() as session:
         start_data = datetime.now()
         user = await session.scalar(select(User).where(User.tg_id == telegram_id))
 
         if not user:
-            session.add(User(tg_id=telegram_id, admin=False, username=username, page=1, categor="Все", time_start=start_data))
+            session.add(User(tg_id=telegram_id, admin=False, username=username, page=1, categor="Все", time_start=start_data, privacy_policy=False))
 
             await session.commit()
+
+async def redact_data_user(tg_id, col, new_data):
+    tg_id = int(tg_id)
+    async with async_session() as session:
+        await session.execute(update(User).where(User.tg_id == tg_id).values(**{col: new_data}))
+        await session.commit()
 
 async def get_user_data(telegram_id):
     async with async_session() as session:
