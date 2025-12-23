@@ -15,7 +15,7 @@ start_kb = ReplyKeyboardMarkup(keyboard=[
      KeyboardButton(text="Гарантия")],
     [KeyboardButton(text="Промокод"),
     KeyboardButton(text="Магазины")],
-    [KeyboardButton(text="Cоцсети"),
+    [KeyboardButton(text="Мы в соцсетях"),
     KeyboardButton(text="Задать вопрос")]
 ], resize_keyboard=True)
 

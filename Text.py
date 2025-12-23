@@ -89,7 +89,7 @@ select_categor = """
 
 privacy_policy_Text = """
 Здравствуйте! Чтобы продолжить необходимо принять:
-<a><a href="https://telegra.ph/PUBLICHNAYA-OFERTA-12-23-6">политику конфиденциальности</url>
+<a href="https://telegra.ph/PUBLICHNAYA-OFERTA-12-23-6">политику конфиденциальности</a>
 """
 
 privacy_policy_False_Text = """

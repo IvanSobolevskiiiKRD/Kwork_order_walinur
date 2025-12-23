@@ -37,11 +37,11 @@ async def cmd_start(message: Message, command: CommandObject, state: FSMContext)
 @router.callback_query(F.data == "privacy_policy_True")
 async def start(callback: CallbackQuery):
     await rq.redact_data_user(callback.from_user.id, "privacy_policy", True)
-    await callback.answer(Text.start_text, reply_markup=kb.start_kb)
+    await callback.message.answer(Text.start_text, reply_markup=kb.start_kb)
 
 @router.callback_query(F.data == "privacy_policy_False")
 async def start(callback: CallbackQuery):
-    await callback.answer(Text.privacy_policy_False_Text)
+    await callback.message.answer(Text.privacy_policy_False_Text)
 
 @router.message(F.text.contains("⏮️ На главную ⏮️"))
 async def cmd_start(message: Message, state: FSMContext):
@@ -125,7 +125,7 @@ async def dack_menu(message: Message):
     else:
         await message.answer(Text.promo_not_text, reply_markup=kb.promo_kb)
 
-@router.message(F.text.contains("Cоцсети"))
+@router.message(F.text.contains("Мы в соцсетях"))
 async def garant(message: Message):
     await message.answer(Text.socsites, reply_markup=kb.socsites_kb)
 
